@@ -117,7 +117,7 @@ hexo.extend.filter.register('after_post_render', function(data) {
 });
 
 // Register a hook to run after generation is complete to save the new pings
-hexo.extend.hook.register('after_generate', async () => {
+hexo.on('generateAfter', async () => {
   if (newSlugsToPingThisSession.size > 0) {
     hexo.log.info(`Webhook Ping: Attempting to save ${newSlugsToPingThisSession.size} newly pinged slugs.`);
     newSlugsToPingThisSession.forEach(slug => previouslyPingedSlugs.add(slug));
